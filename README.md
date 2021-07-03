@@ -1,24 +1,34 @@
-# README
+# サイト名
+麺語 Mengatari
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+食べたラーメンを記録し、共有するSNS
 
-Things you may want to cover:
+### サイトテーマ
+ラーメン好きの交流の場
 
-* Ruby version
+### テーマを選んだ理由
+大手のレビューサイトなどには、各料理のジャンルや特徴ごとに投稿を見る機能があまりなく、1つのメニューに特化したWEBサイトに需要を感じた。また「食べる」という体験を通じてユーザー同士が交流することのできる場があればと考えた。
 
-* System dependencies
+### ターゲットユーザ
+食べ歩きをする若い世代、もしくはラーメン愛好家
 
-* Configuration
+### 主な利用シーン
+食べたラーメンを記録したり、同じ趣向を持ったユーザーの投稿を見たいとき
 
-* Database creation
+## 設計書
+<...>
 
-* Database initialization
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1rD2ylynpbPmBvFNDy636oqmY2DWO08VSeS6Kquf3hi4/edit#gid=515631235
 
-* How to run the test suite
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
