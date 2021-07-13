@@ -1,0 +1,12 @@
+サムネ
+ユーザーネーム：<%= @user.name %>
+自己紹介文
+<% @posts.each do |post| %>
+  <div>
+    <%= link_to post_path(post.id) do %>
+      <%= attachment_image_tag post, :image %>
+    <% end %>
+    <p>ショップ名：<%= post.title %></p>
+    <p>説明：<%= post.body %></p>
+  </div>
+<% end %>
