@@ -19,12 +19,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-  def destroy
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
   end
 
+  def search
+    @posts = Post.search(params[:keyword])
   end
 
   private
