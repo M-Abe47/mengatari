@@ -12,6 +12,7 @@
         </td>
         <td><%= post.title %></td>
         <td><%= post.body %></td>
+        <td><%= render "favorites/favorite-btn", post: post %></td>
         <td><%= post.user.name %></td>
       </tr>
     <% end %>
