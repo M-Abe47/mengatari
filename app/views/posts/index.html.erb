@@ -24,11 +24,22 @@
                   <%= post.body %>
                   <%= render "favorites/favorite-btn", post: post %>
                   <%= post.user.name %>
+                  <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
                 </td>
               </tr>
             <% end %>
           </tbody>
         </table>
+        <script>
+          $('.post-evaluation').empty();
+          $('.post-evaluation').raty({
+            readOnly: true,
+            score: function() {
+              return $(this).attr('data-score');
+            },
+            path: '/assets'
+          });
+        </script>
       </div>
   </div>
 </div>

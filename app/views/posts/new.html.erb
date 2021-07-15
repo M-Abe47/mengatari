@@ -6,5 +6,18 @@
   <%= f.text_field :title %>
   <h4>説明</h4>
   <%= f.text_area :body %>
+  <div id="evaluate_stars">
+    <label>評価</label>
+  </div>
   <%= f.submit '投稿' %>
 <% end %>
+
+<script>
+  $('#evaluate_stars').empty();
+  $('#evaluate_stars').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'post[evaluation]' //登録するモデル名とカラム名を記述
+  });
+</script>
