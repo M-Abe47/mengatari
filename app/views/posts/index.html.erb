@@ -7,7 +7,24 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-3"></div>
+    <div class="col-3">
+      <h3>人気の投稿</h3>
+      <% @favorite_posts.each do |post| %>
+      <tr>
+        <td>
+          <h3>
+            <%= link_to post_path(post.id) do %>
+              <%= post.title %>
+            <% end %>
+          </h3>
+          <%= post.body %>
+          <%= render "favorites/favorite-btn", post: post %>
+          <%= post.user.name %>
+          <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
+        </td>
+      </tr>
+      <% end %>
+    </div>
       <div class="col-9">
         <table>
           <thead></thead>
