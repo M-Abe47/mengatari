@@ -1,4 +1,4 @@
-<h1>投稿フォーム</h1>
+<h1>新規投稿</h1>
 <%= form_with model: @post, local:true do |f| %>
   <h4>画像</h4>
   <%= f.attachment_field :image %>
@@ -18,6 +18,6 @@
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'post[evaluation]' //登録するモデル名とカラム名を記述
+    scoreName: 'post[evaluation]' //postモデル内evaluationカラム
   });
 </script>
