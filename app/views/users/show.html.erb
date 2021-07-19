@@ -18,7 +18,6 @@
     <td>
       <h1><%= post.title %></h1>
       <%= post.body %>
-      <%= render "favorites/favorite-btn", post: post %>
       <%= post.user.name %>
       <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
     </td>
