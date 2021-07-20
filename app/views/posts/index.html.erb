@@ -41,6 +41,7 @@
                 <%= attachment_image_tag post.user, :image, :fill, 30, 30, fallback: "no_image.jpg" %>
                 <%= post.user.name %>
                 <h1><%= post.title %></h1>
+                <%= post.category %>
                 <%= post.body %>
                 <!--いいねボタン-->
                 <div class="favorite-btn"><%= render "favorites/favorite-btn", post: post %></div>
