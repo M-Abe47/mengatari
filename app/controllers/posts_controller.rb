@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @favorite_posts = Post.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
   end
 
   def show

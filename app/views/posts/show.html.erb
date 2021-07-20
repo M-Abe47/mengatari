@@ -1,12 +1,18 @@
-<%= attachment_image_tag @post, :image %>
-<%= @post.title %>
-<%= @post.body %>
-<%= @post.user.name %>
-投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %>
-  <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete %>
-  <% end %>
-
+<div class="card" style="width: 50rem;">
+      <%= attachment_image_tag @post, :image, :fill, 400, 300, fallback: "no_image.jpg", size: "350x250", class:"border rounded" %>
+  <div class="card-body" id="post_<%= @post.id %>">
+    <%= @post.user.name %>
+    <%= @post.title %>
+    <%= @post.body %>
+    <!--いいねボタン-->
+    <div class="favorite-btn"><%= render "favorites/favorite-btn", post: @post %></div>
+    <div class="post-evaluation" data-score="<%= @post.evaluation %>"></div>
+    投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %>
+    <% if @post.user == current_user %>
+      <%= link_to "削除", post_path(@post), method: :delete %>
+    <% end %>
+  </div>
+</div>
 <p>コメント件数：<%= @post.post_comments.count %></p>
 <% @post.post_comments.each do |post_comment| %>
   <%= post_comment.user.name %>

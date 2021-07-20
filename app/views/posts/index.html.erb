@@ -7,39 +7,51 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-3"></div>
-      <div class="col-9">
-        <table>
-          <thead></thead>
-          <tbody>
-            <% @posts.each do |post| %>
-              <tr>
-                <td>
-                  <%= link_to post_path(post.id) do %>
-                    <%= attachment_image_tag post, :image, :fill, 400, 300, fallback: "no_image.jpg", size: "400x300", class:"border rounded" %>
-                  <% end %>
-                </td>
-                <td>
-                  <h1><%= post.title %></h1>
-                  <%= post.body %>
-                  <%= render "favorites/favorite-btn", post: post %>
-                  <%= post.user.name %>
-                  <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
-                </td>
-              </tr>
+    <div class="col-3">
+      <h3>人気の投稿</h3>
+      <% @favorite_posts.each do |post| %>
+      <tr>
+        <td>
+          <h3>
+            <%= link_to post_path(post.id) do %>
+              <%= post.title %>
             <% end %>
-          </tbody>
-        </table>
-        <script>
-          $('.post-evaluation').empty();
-          $('.post-evaluation').raty({
-            readOnly: true,
-            score: function() {
-              return $(this).attr('data-score');
-            },
-            path: '/assets'
-          });
-        </script>
+          </h3>
+          <%= post.favorites.count %>いいね
+          <%= post.user.name %>
+          <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
+          </br>
+        </td>
+      </tr>
+      <% end %>
+    </div>
+      <div class="col-9">
+          <% @posts.each do |post| %>
+            <div class="card" style="width: 50rem;">
+                <%= link_to post_path(post.id) do %>
+                  <%= attachment_image_tag post, :image, :fill, 400, 300, fallback: "no_image.jpg", size: "350x250", class:"border rounded" %>
+                <% end %>
+              <div class="card-body" id="post_<%= post.id %>">
+                <%= attachment_image_tag post.user, :image, :fill, 30, 30, fallback: "no_image.jpg" %>
+                <%= post.user.name %>
+                <h1><%= post.title %></h1>
+                <%= post.body %>
+                <!--いいねボタン-->
+                <div class="favorite-btn"><%= render "favorites/favorite-btn", post: post %></div>
+                <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
+              </div>
+            </div>
+          <% end %>
+          <script>
+            $('.post-evaluation').empty();
+            $('.post-evaluation').raty({
+              readOnly: true,
+              score: function() {
+                return $(this).attr('data-score');
+              },
+              path: '/assets'
+            });
+          </script>
       </div>
   </div>
 </div>
