@@ -4,21 +4,43 @@
 <% end %>
 
 <% if @posts == [] %>
-<h2 class = "seach-result">検索結果はありません</h2>
+  <h2 class = "seach-result">検索結果はありません</h2>
 <% else %>
-<div class = "post-contents">
-  <ul class = "post-list">
+  <div class="col-md-4">
     <% @posts.each do |post| %>
-    <li class = "list">
-      <%= link_to post_path(post.id) do %>
-        <%= attachment_image_tag post, :image %>
-        <h3 class='post-title'><%= post.title %></h3>
-      <p class = "root-show">〜クリックして詳細を見る〜</p>
-      <% end %>
-    </li>
+      <div class="card">
+          <%= link_to post_path(post.id) do %>
+            <%= attachment_image_tag post, :image, :fill, 400, 300, fallback: "no_image.jpg", size: "350x250", class:"border rounded" %>
+          <% end %>
+        <div class="card-body" id="post_<%= post.id %>">
+          <div class="column flex-direction:row">
+            <div class="tab col-md-9">
+              <div class="content col-md-9">
+            <%= attachment_image_tag post.user, :image, :fill, 30, 30, fallback: "no_image.jpg" %>
+            <%= post.user.name %>
+            <h1><%= post.title %></h1>
+            <%= post.category %>
+            <%= post.body %>
+            <!--いいねボタン-->
+            <div class="favorite-btn"><%= render "favorites/favorite-btn", post: post %></div>
+            <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
-</div>
+    <script>
+      $('.post-evaluation').empty();
+      $('.post-evaluation').raty({
+        readOnly: true,
+        score: function() {
+          return $(this).attr('data-score');
+        },
+        path: '/assets'
+      });
+    </script>
+  </div>
 <% end %>
 
 <%= link_to new_post_path, class: 'post-btn' do %>
