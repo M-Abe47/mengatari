@@ -22,6 +22,20 @@ class PostsController < ApplicationController
     @post_comment = PostComment.new
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      # flash[:notice] = "商品を編集しました"
+      redirect_to post_path(@post.id)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
