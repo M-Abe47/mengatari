@@ -1,0 +1,37 @@
+<div class="container">
+  <p id="notice"><%= flash[:notice] %></p>
+	<h2>ラーメンの記録</h2>
+ 	<div class="col-md-12 col-sm-12 col-xs-12">
+ 	  <%# binding.irb %>
+		<%= month_calendar events: @posts do |date, memos| %>
+		  <%= date.day %>
+		  <% memos.each do |memo| %>
+		    <div>
+		      <%= link_to memo.title, post_path(memo) %>
+		    </div>
+		  <% end %>
+		<% end %>
+ 	</div>
+
+	<!--<table class="memo table table-bordered">-->
+	<!--	<thead>-->
+	<!--		<tr>-->
+	<!--			<th>タイトル</th>-->
+	<!--			<th>日付</th>-->
+	<!--			<th></th>-->
+	<!--			<th></th>-->
+	<!--		</tr>-->
+	<!--  </thead>-->
+	<!--	< % @posts.each do |memo| %>-->
+	<!--		<tbody>-->
+	<!--			<tr>-->
+	<!--				<td>< %= memo.title %></td>-->
+	<!--				<td>< %= memo.start_time.strftime("%Y-%m-%d %H:%M")%></td>-->
+					<!--<td>< %= link_to "編集" , edit_user_memo_path(memo),:class=>"btn04" %></td>-->
+					<!--<td>< %= link_to "削除", user_memo_path(memo) , method: :delete , data: {confirm:"削除しますか"} ,:class=>"btn03" %></td>-->
+	<!--			</tr>-->
+	<!--		</tbody>-->
+	<!--	< % end %>-->
+	<!--</table>-->
+		<!--< %= paginate @posts %>-->
+</div>

@@ -8,8 +8,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      flash[:notice] = "投稿しました"
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def index
@@ -52,6 +56,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :image, :body, :evaluation, :category)
+    params.require(:post).permit(:title, :image, :body, :evaluation, :category, :start_time)
   end
 end
