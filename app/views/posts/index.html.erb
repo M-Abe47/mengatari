@@ -16,14 +16,14 @@
         <%= link_to post_path(post.id) do %>
           <div class="card mb-3">
             <div class="card-body">
-              <h5 class="card-title">
+              <h5 class="card-title text-muted">
                 <%= i %>位
                 <%= post.user.name %>
               </h5>
               <h6 class="card-subtitle text-muted">
                 <%= post.title %>
               </h6>
-              <p class="card-text">
+              <p class="card-text text-muted">
                 <%= post.favorites.count %>いいね
               </p>
             </div>
@@ -44,7 +44,6 @@
                     <%= attachment_image_tag post, :image, :fill, 400, 300, fallback: "no_image.jpg", size: "350x250", class:"border rounded" %>
                 <% end %>
               </div>
-
               <div class="col-md-6">
                 <div class="card-body" id="post_<%= post.id %>">
                   <h5 class="card-title"><%= post.title %></h5>
