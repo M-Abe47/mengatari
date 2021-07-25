@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(1)
     @favorite_posts = Post.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
   end
 
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      # flash[:notice] = "商品を編集しました"
+      flash[:notice] = "編集しました"
       redirect_to post_path(@post.id)
     else
       render :edit

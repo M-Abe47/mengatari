@@ -1,22 +1,29 @@
 <div class="container">
-  <p id="notice"><%= flash[:notice] %></p>
   <div class="row">
   <!--投稿検索-->
   <%= search_form_for @q, url: search_posts_path do |f| %>
     <%= f.label :title_cont, '投稿名' %>
     <%= f.search_field :title_cont %>
-    <%= f.submit '検索' %>
+    <%= button_tag sanitize('<i class="fa fa-search"></i>'), :type => "submit", :class =>"btn btn-light btn-sm" %>
   <% end %>
   </div>
 
   <div class="row">
-    <div class="col-3">
+    <div class="col-lg-3">
       <h3>人気の投稿</h3>
       <% @favorite_posts.each.with_index(1) do |post, i| %>
         <%= link_to post_path(post.id) do %>
           <div class="card mb-3">
             <div class="card-body">
               <h5 class="card-title text-muted">
+                <% if i == 1 %>
+                  <i class="fas fa-crown text-warning"></i>
+                <% elsif i == 2 %>
+                  <i class="fas fa-crown text-muted"></i>
+                <% elsif i == 3 %>
+                  <i class="fas fa-crown text-danger"></i>
+                <% end %>
+
                 <%= i %>位
                 <%= post.user.name %>
               </h5>
@@ -32,27 +39,34 @@
       <% end %>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-lg-1">
     </div>
 
-    <div class="col-md-8">
+    <div class="col-lg-8">
         <% @posts.each do |post| %>
-          <div class="card mb-3 fly">
+          <div class="card mb-5 fly shadow">
             <div class="row no-gutters">
-              <div class="col-md-6 my-auto">
+              <div class="col-lg-6 my-auto">
                 <%= link_to post_path(post.id) do %>
-                    <%= attachment_image_tag post, :image, :fill, 400, 300, fallback: "no_image.jpg", size: "350x250", class:"border rounded" %>
+                    <%= attachment_image_tag post, :image, :fill, 350, 250, fallback: "no_image.jpg", size: "350x250", class:"border rounded" %>
                 <% end %>
               </div>
-              <div class="col-md-6">
+              <div class="col-lg-6">
                 <div class="card-body" id="post_<%= post.id %>">
-                  <h5 class="card-title"><%= post.title %></h5>
-                  <p><%= post.body %></p>
-                  <%= attachment_image_tag post.user, :image, :fill, 30, 30, fallback: "no_image.jpg" %>
-                  <%= post.user.name %>
+                  <!--ユーザーアイコン-->
+                  <%= link_to user_path(post.user.id) do %>
+                    <%= attachment_image_tag post.user, :image, :fill, 30, 30, fallback: "no_image.jpg" %>
+                    <%= post.user.name %>
+                  <% end %>
+                  <!--タイトル、カテゴリ、本文-->
+                  <h4 class="card-title mt-2">
+                    <%= post.title %>
+                  </h4>
                   <%= post.category %>
+                  <p><%= post.body %></p>
                   <!--いいねボタン-->
                   <div class="favorite-btn"><%= render "favorites/favorite-btn", post: post %></div>
+                  <!--評価-->
                   <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
                 </div>
               </div>
@@ -71,4 +85,5 @@
         </script>
     </div>
   </div>
+  <div class="pagination float-right"><%= paginate @posts, theme: 'twitter-bootstrap-4' %></div>
 </div>
