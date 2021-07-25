@@ -10,9 +10,59 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require simple_calendar
  *= require_tree .
  *= require_self
  */
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+body {
+  // background-size: cover;
+  background-color: #F0F0F0;
+}
+
+.notice {
+  color: white;
+  background-color: blue;
+}
+.alert {
+  color: white;
+  background-color: red;
+}
+
+.fly {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    margin: 10px 0 0 0;
+}
+.fly:hover {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+}
+
+.simple-calendar {
+ .day {}
+ .wday-0 {}
+ .wday-1 {}
+ .wday-2 {}
+ .wday-3 {}
+ .wday-4 {}
+ .wday-5 {}
+ .wday-6 {}
+ .today {}
+ .past {}
+ .future {}
+ .start-date {}
+ .prev-month {}
+ .next-month { }
+ .current-month {}
+ .has-events {
+   background: #98fb98;
+ }
+}

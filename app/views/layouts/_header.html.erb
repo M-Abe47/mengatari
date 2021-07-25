@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark", style="background-color: #A52A2A;">
     <div class="container">
       <a class="navbar-brand" href="/"><span>Mengatari</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,6 +16,9 @@
             </li>
             <li>
               <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to 'カレンダー', user_memos_path(current_user.id), class: 'nav-link text-light' %>
             </li>
             <li>
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>

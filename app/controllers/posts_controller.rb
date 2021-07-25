@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_q, only: [:index, :search]
+
   def new
     @post = Post.new
   end
@@ -6,18 +8,36 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      flash[:notice] = "投稿しました"
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(1)
     @favorite_posts = Post.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
   end
 
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "編集しました"
+      redirect_to post_path(@post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -27,12 +47,15 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:keyword])
+    @posts = @q.result
   end
 
   private
+  def set_q
+    @q = Post.ransack(params[:q])
+  end
 
   def post_params
-    params.require(:post).permit(:title, :image, :body, :evaluation)
+    params.require(:post).permit(:title, :image, :body, :evaluation, :category, :start_time)
   end
 end

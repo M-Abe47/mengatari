@@ -4,6 +4,9 @@
   <%= f.attachment_field :image %>
   <h4>タイトル</h4>
   <%= f.text_field :title %>
+  <p><%= f.datetime_select :start_time %></p>
+  <%= f.label :ジャンル %>
+  <%= f.select :category, [["醤油", "醤油"], ["味噌", "味噌"], ["豚骨", "豚骨"], ["魚介", "魚介"], ["塩", "塩"], ["家系", "家系"], ["二郎系", "二郎系"], ["その他", "その他"]], class: 'form-control' %>
   <h4>説明</h4>
   <%= f.text_area :body %>
   <div id="evaluate_stars">
