@@ -1,38 +1,43 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark", style="background-color: #A52A2A;">
+<div class="bs-component">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+      <a href="/" class="rogo"><%= image_tag 'logo.png', size: "55x55" %></a>
       <a class="navbar-brand" href="/"><span>Mengatari</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav mr-auto">
           <% if user_signed_in? %>
-            <li>
+            <li class="nav-item">
               <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-light' %>
             </li>
-            <li>
+            <li class="nav-item">
               <%= link_to '投稿一覧', posts_path, class: 'nav-link text-light' %>
             </li>
-            <li>
+            <li class="nav-item">
               <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light' %>
             </li>
-            <li>
+            <li class="nav-item">
               <%= link_to 'カレンダー', user_memos_path(current_user.id), class: 'nav-link text-light' %>
             </li>
-            <li>
+            <li class="nav-item">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
             </li>
           <% else %>
-            <li>
+            <li class="nav-item">
               <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
             </li>
-            <li>
+            <li class="nav-item">
               <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
             </li>
           <% end %>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
       </div>
     </div>
   </nav>
-</header>
+</div>
