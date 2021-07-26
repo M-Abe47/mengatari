@@ -17,10 +17,13 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
 
 body {
   // background-size: cover;
   background-color: #F0F0F0;
+  font-family: 'Noto Sans JP', sans-serif;
+
 }
 
 // // footerの設定
@@ -83,4 +86,9 @@ body {
  .has-events {
    background: #98fb98;
  }
+}
+
+.nav-item {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-style: normal;
 }
