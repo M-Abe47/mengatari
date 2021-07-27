@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_085930) do
+ActiveRecord::Schema.define(version: 2021_07_22_125428) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -36,9 +36,12 @@ ActiveRecord::Schema.define(version: 2021_07_15_085930) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "evaluation"
+    t.string "category"
+    t.datetime "start_time"
     t.string "tag_list"
   end
-
+  
   create_table "taggings", force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -65,6 +68,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_085930) do
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
+
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
