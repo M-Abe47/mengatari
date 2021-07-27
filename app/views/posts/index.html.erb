@@ -1,11 +1,17 @@
 <div class="container">
   <div class="row">
   <!--投稿検索-->
-  <%= search_form_for @q, url: search_posts_path do |f| %>
-    <%= f.label :title_cont, '投稿名' %>
-    <%= f.search_field :title_cont %>
-    <%= button_tag sanitize('<i class="fa fa-search"></i>'), :type => "submit", :class =>"btn btn-light btn-sm" %>
-  <% end %>
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :content, placeholder: "検索", class:"rounded" %>
+      <%= hidden_field_tag :model, "post" %>
+      <%= button_tag sanitize('<i class="fa fa-search"></i>'), :type => "submit", :class =>"btn btn-light btn-sm" %>
+    <% end %>
+
+  <!--<　%= search_form_for @q, url: search_posts_path do |f| %>-->
+  <!--  <　%= f.label :title_cont, '投稿名' %>-->
+  <!--  <　%= f.search_field :title_cont %>-->
+  <!--  <　%= button_tag sanitize('<i class="fa fa-search"></i>'), :type => "submit", :class =>"btn btn-light btn-sm" %>-->
+  <!--<　% end %>-->
   </div>
 
   <div class="row">
@@ -42,48 +48,48 @@
     </div>
 
     <div class="col-lg-8">
-        <% @posts.each do |post| %>
-          <div class="card mb-5 fly shadow">
-            <div class="row no-gutters">
-              <div class="col-lg-6 my-auto mr-0">
-                <%= link_to post_path(post.id) do %>
-                    <%= attachment_image_tag post, :image, :fill, 365, 265, fallback: "black_logo.jpg", size: "365x265", class:"border" %>
+      <% @posts.each do |post| %>
+        <div class="card mb-5 fly shadow">
+          <div class="row no-gutters">
+            <div class="col-lg-6 my-auto mr-0">
+              <%= link_to post_path(post.id) do %>
+                  <%= attachment_image_tag post, :image, :fill, 365, 265, fallback: "black_logo.jpg", size: "365x265", class:"border" %>
+              <% end %>
+            </div>
+            <div class="col-lg-6">
+              <div class="card-header">
+                <!--ユーザーアイコン-->
+                <%= link_to user_path(post.user.id) do %>
+                  <%= attachment_image_tag post.user, :image, :fill, 32, 32, fallback: "no_image.jpg", size: "32x32", class:"border" %>
+                  <%= post.user.name %>
                 <% end %>
               </div>
-              <div class="col-lg-6">
-                <div class="card-header">
-                  <!--ユーザーアイコン-->
-                  <%= link_to user_path(post.user.id) do %>
-                    <%= attachment_image_tag post.user, :image, :fill, 32, 32, fallback: "no_image.jpg", size: "32x32", class:"border" %>
-                    <%= post.user.name %>
-                  <% end %>
-                </div>
-                <div class="card-body" id="post_<%= post.id %>">
-                  <!--タイトル、カテゴリ、本文-->
-                  <h4 class="card-title">
-                    <%= post.title %>
-                  </h4>
-                  <%= post.category %>
-                  <p><%= post.body %></p>
-                  <!--いいねボタン-->
-                  <div class="favorite-btn"><%= render "favorites/favorite-btn", post: post %></div>
-                  <!--評価-->
-                  <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
-                </div>
+              <div class="card-body" id="post_<%= post.id %>">
+                <!--タイトル、カテゴリ、本文-->
+                <h4 class="card-title">
+                  <%= post.title %>
+                </h4>
+                <%= post.category %>
+                <p><%= post.body %></p>
+                <!--いいねボタン-->
+                <div class="favorite-btn"><%= render "favorites/favorite-btn", post: post %></div>
+                <!--評価-->
+                <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
               </div>
             </div>
           </div>
-        <% end %>
-        <script>
-          $('.post-evaluation').empty();
-          $('.post-evaluation').raty({
-            readOnly: true,
-            score: function() {
-              return $(this).attr('data-score');
-            },
-            path: '/assets'
-          });
-        </script>
+        </div>
+      <% end %>
+      <script>
+        $('.post-evaluation').empty();
+        $('.post-evaluation').raty({
+          readOnly: true,
+          score: function() {
+            return $(this).attr('data-score');
+          },
+          path: '/assets'
+        });
+      </script>
     </div>
   </div>
   <div class="pagination float-right"><%= paginate @posts, theme: 'twitter-bootstrap-4' %></div>
