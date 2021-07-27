@@ -68,11 +68,12 @@ gem 'kaminari','~> 1.2.1'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
+gem 'acts-as-taggable-on', '~> 6.0'
 gem 'ransack'
 gem 'simple_calendar', '~> 2.0'
 gem 'bootstrap4-kaminari-views'
-
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
