@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
   <!--投稿検索-->
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
-      <%= f.text_field :content, placeholder: "検索", class:"rounded" %>
-      <%= hidden_field_tag :model, "post" %>
-      <%= button_tag sanitize('<i class="fa fa-search"></i>'), :type => "submit", :class =>"btn btn-light btn-sm" %>
-    <% end %>
+    <!--< %= form_with url: search_path, method: :get, local: true do |f| %>-->
+    <!--  < %= f.text_field :content, placeholder: "検索", class:"rounded" %>-->
+    <!--  < %= hidden_field_tag :model, "post" %>-->
+    <!--  < %= button_tag sanitize('<i class="fa fa-search"></i>'), :type => "submit", :class =>"btn btn-light btn-sm" %>-->
+    <!--< % end %>-->
 
   <!--<　%= search_form_for @q, url: search_posts_path do |f| %>-->
   <!--  <　%= f.label :title_cont, '投稿名' %>-->
