@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_q, only: [:index, :search]
+  before_action :authenticate_user!,except: [:index, :show]
 
   def new
     @post = Post.new
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).per(1)
+    @posts = Post.page(params[:page]).per(8)
     @favorite_posts = Post.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
   end
 
@@ -42,18 +42,22 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+    if @post.destroy
+      flash[:notice] = "編集しました"
+      redirect_to posts_path
+    else
+      render :index
+    end
   end
 
-  def search
-    @posts = @q.result
-  end
+  # def search
+  #   @posts = @q.result
+  # end
 
   private
-  def set_q
-    @q = Post.ransack(params[:q])
-  end
+  # def set_q
+  #   @q = Post.ransack(params[:q])
+  # end
 
   def post_params
     params.require(:post).permit(:title, :image, :body, :evaluation, :category, :start_time)

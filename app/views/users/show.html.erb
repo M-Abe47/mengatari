@@ -5,12 +5,15 @@
         <h3 class="profile-name"><%= @user.name %></h3>
         <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
         <p><%= @user.introduction %></p>
-        <% if @user.id == current_user.id %>
-          <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+        <% if user_signed_in? %>
+          <% if @user.id == current_user.id %>
+            <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+          <% end %>
+        <% else %>
         <% end %>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7 ml-2">
       <% @posts.each do |post| %>
         <tr>
           <td>
