@@ -71,6 +71,8 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'ransack'
 gem 'simple_calendar', '~> 2.0'
 gem 'bootstrap4-kaminari-views'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 gem 'dotenv-rails'
 group :production do

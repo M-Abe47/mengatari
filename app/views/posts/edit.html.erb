@@ -1,6 +1,6 @@
 <div class="container">
   <div>
-  <!--< %= render "shared/form_error", model: @post %>-->
+    <%= render "layouts/error_message", model: @post %>
   </div>
   <%= form_with model:@post, local:true do |f| %>
     <h1>編集</h1>
@@ -42,3 +42,4 @@
     });
   </script>
 </div>
+

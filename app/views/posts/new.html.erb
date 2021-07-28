@@ -1,47 +1,46 @@
 <div class="container">
-  <div>
-    <h1>新規投稿</h1>
-    <%= form_with model: @post, local:true do |f| %>
-      <div class="row mt-5 light-text">
-        <label class="col-md-2 mr-2 text">画像</label>
-        <%= f.attachment_field :image, class:"col-md-5" %>
-      </div>
-      <div class="row mt-2 light-text">
-        <label class="col-md-2 mr-2 text">タイトル</label>
-        <%= f.text_field :title, class:"col-md-3" %>
-      </div>
-      <div class="row mt-2 light-text">
-        <label class="col-md-2 mr-2 text">時間</label>
-        <%= f.datetime_select :start_time, :discard_hour => true, :discard_minute => true, class:"col-md-5" %>
-      </div>
-      <div class="row mt-2 light-text">
-        <label class="col-md-2 mr-2 text">ジャンル</label>
-        <div class="col-md-3"><%= f.select :category, [["醤油", "醤油"], ["味噌", "味噌"], ["豚骨", "豚骨"], ["魚介", "魚介"], ["塩", "塩"], ["家系", "家系"], ["二郎系", "二郎系"], ["その他", "その他"]], class: 'form-control' %></div>
-      </div>
-      <div class="row mt-2 light-text">
-        <label class="col-md-2 mr-2 text">商品説明<br><br><br><br></label>
-        <%= f.text_area :body, class:"col-md-3" %>
-      </div>
-      <div class="row mt-4">
-        <div class="col-md-2">評価</div>
-        <div id="evaluate_stars">
-          <label class="col-md-2 mr-2 text">評価</label>
+  <%= render "layouts/error_message", model: @post %>
+      <h1>新規投稿</h1>
+      <%= form_with model: @post, local:true do |f| %>
+        <div class="row mt-5 light-text">
+          <label class="col-md-2 mr-2 text">画像</label>
+          <%= f.attachment_field :image, class:"col-md-5" %>
         </div>
-      </div>
-      <div class="row mt-5 text">
-        <label class="col-md-2 mr-2"></label>
-        <%= f.submit '更新', class:"col-md-2 btn btn-success" %>
-      </div>
-    <% end %>
+        <div class="row mt-2 light-text">
+          <label class="col-md-2 mr-2 text">タイトル</label>
+          <%= f.text_field :title, class:"col-md-3" %>
+        </div>
+        <div class="row mt-2 light-text">
+          <label class="col-md-2 mr-2 text">時間</label>
+          <%= f.datetime_select :start_time, :discard_hour => true, :discard_minute => true, class:"col-md-5" %>
+        </div>
+        <div class="row mt-2 light-text">
+          <label class="col-md-2 mr-2 text">ジャンル</label>
+          <div class="col-md-3"><%= f.select :category, [["醤油", "醤油"], ["味噌", "味噌"], ["豚骨", "豚骨"], ["魚介", "魚介"], ["塩", "塩"], ["家系", "家系"], ["二郎系", "二郎系"], ["その他", "その他"]], class: 'form-control' %></div>
+        </div>
+        <div class="row mt-2 light-text">
+          <label class="col-md-2 mr-2 text">商品説明<br><br><br><br></label>
+          <%= f.text_area :body, class:"col-md-3" %>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-2">評価</div>
+          <div id="evaluate_stars">
+            <label class="col-md-2 mr-2 text">評価</label>
+          </div>
+        </div>
+        <div class="row mt-5 text">
+          <label class="col-md-2 mr-2"></label>
+          <%= f.submit '投稿', class:"col-md-2 btn btn-success" %>
+        </div>
+      <% end %>
 
-    <script>
-      $('#evaluate_stars').empty();
-      $('#evaluate_stars').raty({
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        scoreName: 'post[evaluation]' //postモデル内evaluationカラム
-      });
-    </script>
-  </div>
+      <script>
+        $('#evaluate_stars').empty();
+        $('#evaluate_stars').raty({
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[evaluation]' //postモデル内evaluationカラム
+        });
+      </script>
 </div>

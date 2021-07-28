@@ -1,34 +1,43 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="profile-container">
-        <h3 class="profile-name"><%= @user.name %></h3>
-        <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-        <p><%= @user.introduction %></p>
-        <% if user_signed_in? %>
-          <% if @user.id == current_user.id %>
-            <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <div class="profile-container">
+          <h3 class="profile-name"><%= @user.name %></h3>
+          <%= attachment_image_tag @user, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", size: "200x200" %>
+          <p><%= @user.introduction %></p>
+          <% if user_signed_in? %>
+            <% if @user.id == current_user.id %>
+              <%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-info' %>
+            <% end %>
+          <% else %>
           <% end %>
+        </div>
+      </div>
+      <div class="col-md-7 ml-2">
+        <% if @posts.present? %>
+
+          <% @posts.each do |post| %>
+            <tr>
+              <td>
+                <%= link_to post_path(post.id) do %>
+                  <%= attachment_image_tag post, :image, :fill, 400, 300, fallback: "no_image.jpg", size: "400x300", class:"border rounded" %>
+                <% end %>
+              </td>
+              <td>
+                <h1><%= post.title %></h1>
+                <%= post.body %>
+                <%= post.user.name %>
+                <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
+              </td>
+            </tr>
+          <% end %>
+
         <% else %>
+        <div class="mt-5">
+          <h1>まだ投稿がありません</h1>
+          <h2>投稿は<%= link_to 'こちら', new_post_path, class: 'text-primary' %>から</h2>
+        </div>
         <% end %>
       </div>
     </div>
-    <div class="col-md-7 ml-2">
-      <% @posts.each do |post| %>
-        <tr>
-          <td>
-            <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image, :fill, 400, 300, fallback: "no_image.jpg", size: "400x300", class:"border rounded" %>
-            <% end %>
-          </td>
-          <td>
-            <h1><%= post.title %></h1>
-            <%= post.body %>
-            <%= post.user.name %>
-            <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
-          </td>
-        </tr>
-      <% end %>
-    </div>
   </div>
-</div>
