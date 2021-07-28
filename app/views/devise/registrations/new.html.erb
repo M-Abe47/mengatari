@@ -16,7 +16,7 @@
 
         <div class="form-group row">
           <div class="col-3 text">
-            <%= f.label :name %>
+            <%= f.label :name, "ユーザー名" %>
           </div>
           <div class="col-3 text">
             <%= f.text_field :name, autofocus: true %>
@@ -25,7 +25,7 @@
 
         <div class="form-group row">
           <div class="col-3 text">
-            <%= f.label :email %>
+            <%= f.label :email, "メールアドレス" %>
           </div>
           <div class="col-5 text">
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -34,9 +34,9 @@
 
         <div class="form-group row">
           <div class="col-3 text">
-            <%= f.label :password %>
+            <%= f.label :password, "パスワード" %>
             <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <em>(<%= @minimum_password_length %>文字以上)</em>
             <% end %>
           </div>
           <div class="col-3 text">
@@ -46,7 +46,7 @@
 
         <div class="form-group row">
           <div class="col-3 text">
-            <%= f.label :password_confirmation %>
+            <%= f.label :password_confirmation, "パスワード(確認)" %>
           </div>
           <div class="col-5 text">
             <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
