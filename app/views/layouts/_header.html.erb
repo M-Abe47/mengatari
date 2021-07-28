@@ -1,8 +1,12 @@
 <div class="bs-component">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a href="/" class="rogo"><%= image_tag 'logo.png', size: "55x55" %></a>
-      <a class="navbar-brand" href="/"><span>Mengatari</span></a>
+      <%= link_to root_path, data: {"turbolinks" => false}, class: 'rogo' do %>
+        <%= image_tag 'logo.png', size: "55x55" %>
+        <span class="navbar-brand">Mengatari</span>
+      <% end %>
+      <!--<a href="/" class="rogo">< %= image_tag 'logo.png', size: "55x55" %></a>-->
+      <!--<a class="navbar-brand" href="/"><span>Mengatari</span></a>-->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
