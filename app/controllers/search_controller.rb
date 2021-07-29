@@ -3,10 +3,10 @@ class SearchController < ApplicationController
 		@model = params[:model]
 		@content = params[:content]
 
-    if @content == []
-      @records == []
+    if @content.present?
+      @records = Post.where('title LIKE ? OR category LIKE ?', '%'+@content+'%','%'+@content+'%')
     else
-      @records = Post.where('title LIKE ?', '%'+@content+'%')
+      @records = Post.where('title LIKE ?', @content)
     end
   end
 end

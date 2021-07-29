@@ -1,11 +1,52 @@
-<h2>プロフィール編集</h2>
-<%= form_with model:@user, local:true do |f| %>
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
-  <label for="inputName">自己紹介</label>
-  <%= f.text_area :introduction, autofocus: true, id:"inputName", placeholder:"自己紹介など"%>
-  <%= attachment_image_tag @user, :image, :fill, 60, 60, fallback: "no_image.jpg"%>
-  <label for="inputImage">ProfileImage</label>
-  <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
-  <%= f.submit "変更を保存" %>
-<% end %>
+<div class="container">
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger mt-2">
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-md-10 d-block mx-auto mt-2">
+  <h2>プロフィール編集</h2>
+  <%= form_with model:@user, local:true do |f| %>
+    <div class="form-group row mt-3">
+      <div class="col-md-3 text">
+        <%= f.label :name, "ユーザー名" %>
+      </div>
+      <div class="col-md-5 text">
+        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前", class:"form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3 text">
+        <%= f.label :introduction, "プロフィール文" %>
+      </div>
+      <div class="col-md-5 text">
+        <%= f.text_area :introduction, autofocus: true, id:"inputName", class:"form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3 text">
+        <%= f.label :image, "プロフィール画像" %>
+      </div>
+      <div class="col-md-5 text">
+        <%= attachment_image_tag @user, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
+        <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
+      </div>
+    </div>
+
+    <div class="actions row">
+      <div class="col-3">
+      </div>
+      <div class="col-3 text">
+        <%= f.submit "変更を保存", class: "btn btn-success w-100" %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

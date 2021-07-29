@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.all
+    @posts = @user.posts.page(params[:page]).per(8)
   end
 
   def edit
@@ -12,8 +12,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:notice] = "プロフィールを編集しました"
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
 
   private

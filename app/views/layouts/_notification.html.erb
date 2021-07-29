@@ -1,4 +1,5 @@
 <% flash.each do |message_type, message| %>
+<div class="container mt-2">
   <% alert_type = message_type == "notice" ? "success" : "danger" %>
   <div class="alert alert-<%= alert_type %> alert-dismissible fade show" >
     <%= message %>
@@ -6,4 +7,5 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+</div>
 <% end %>
