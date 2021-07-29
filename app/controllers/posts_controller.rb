@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "編集しました"
+      flash[:notice] = "投稿内容を編集しました"
       redirect_to post_path(@post.id)
     else
       render :edit
@@ -60,6 +60,6 @@ class PostsController < ApplicationController
   # end
 
   def post_params
-    params.require(:post).permit(:title, :image, :body, :evaluation, :category, :start_time)
+    params.require(:post).permit(:title, :name, :image, :body, :evaluation, :category, :start_time)
   end
 end

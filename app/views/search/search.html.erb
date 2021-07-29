@@ -25,30 +25,33 @@
               </div>
               <div class="card-body" id="post_<%= post.id %>">
                 <!--タイトル、カテゴリ、本文-->
-                <h4 class="card-title">
-                  <%= post.title %>
-                </h4>
-                <%= post.category %>
-                <p><%= post.body %></p>
+                <h3 class="card-title d-inline"><%= post.title %></h3>
+                <%= post.name %>
+                <%= link_to search_path(content: post.category) do %>
+                  <div class="badge badge-warning"><%= post.category %></div>
+                <% end %>
+                <!--評価-->
+                <div class="post-evaluation mt-1" data-score="<%= post.evaluation %>"></div>
+                <p class="mt-1"><%= post.body %></p>
                 <!--いいねボタン-->
                 <div class="favorite-btn"><%= render "favorites/favorite-btn", post: post %></div>
-                <!--評価-->
-                <div class="post-evaluation" data-score="<%= post.evaluation %>"></div>
-                <script>
-                  $('.post-evaluation').empty();
-                  $('.post-evaluation').raty({
-                    readOnly: true,
-                    score: function() {
-                      return $(this).attr('data-score');
-                    },
-                    path: '/assets'
-                  });
-                </script>
               </div>
             </div>
           </div>
         </div>
       <% end %>
+      <script>
+        $('.post-evaluation').empty();
+        $('.post-evaluation').raty({
+          readOnly: true,
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          score: function() {
+            return $(this).attr('data-score');
+          }
+          // path: '/assets'
+        });
+      </script>
       </div>
     </div>
   </div>

@@ -2,13 +2,16 @@
 <!-- Masthead-->
 <header class="masthead">
   <div class="container">
-    <div class="masthead-subheading">Welcome To Mengatari!</div>
-    <div class="masthead-heading text-uppercase">麵語</div>
-    <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+
+      <div class="masthead-subheading">Welcome To Mengatari!</div>
+      <div class="masthead-heading text-uppercase">「食べる」という体験から、</br>交流が広がる。</div>
+
+    <a class="btn btn-warning btn-lg btn-xl text-uppercase" href="#about" data-turbolinks="false">麺語とは</a>
   </div>
 </header>
 </div>
 
+<div class="main-visual">
 <div id="box">
   <div id="images">
     <div class="image1"></div>
@@ -17,42 +20,60 @@
     <div class="image4"></div>
   </div>
 </div>
+</div>
 
-<!-- Services-->
-<section class="" id="services">
-    <div class="container">
-      <div class="text-center">
-          <h2 class="section-heading text-uppercase">Services</h2>
-          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+<!-- About-->
+<section class="about_box" id="about">
+  <div class="container">
+    <div class="text-center mb-5">
+        <h1 class="section-heading text-uppercase">About</h1>
+        <h4 class="section-subheading text-muted mt-3">ラーメンに特化したSNS、それが『麺語』です</h4>
+    </div>
+    <div class="row text-center mt-5">
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-warning"></i>
+            <i class="fas fa-comments fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="my-3">投稿</h4>
+        <p class="text-muted">食べたラーメンのお店やジャンル(味)、感想を加えて投稿することができます。コメントやいいねを残して交流を楽しみましょう。</p>
       </div>
-      <div class="row text-center">
-        <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-                <i class="fas fa-circle fa-stack-2x text-warning"></i>
-                <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="my-3">E-Commerce</h4>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-        </div>
-        <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-                <i class="fas fa-circle fa-stack-2x text-warning"></i>
-                <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="my-3">Responsive Design</h4>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-        </div>
-        <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-                <i class="fas fa-circle fa-stack-2x text-warning"></i>
-                <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="my-3">Web Security</h4>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-        </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-warning"></i>
+            <i class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="my-3">記録</h4>
+        <p class="text-muted">投稿したラーメンは、日付ごとにカレンダーに保存されます。健康管理や、思い出の振り返りに役立てましょう。</p>
       </div>
-      <div class="row">
-
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-warning"></i>
+            <i class="fas fa-search fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="my-3">探す</h4>
+        <p class="text-muted">いいねランキングや検索フォームから、お気に入りの投稿を見つけましょう。投稿のジャンル名をクリックすると、同ジャンルの投稿だけを見ることができます。</p>
       </div>
     </div>
+  </div>
 </section>
+
+<!--新着投稿-->
+<div class="container">
+  <h2>トピックス</h2>
+  <div class="topics row">
+    <% @posts.first(6).each do |post| %>
+      <div class="card fly shadow my-3" style="width: 20rem;">
+        <div class="item-image">
+          <%= link_to post_path(post.id) do %>
+            <%= attachment_image_tag post, :image, :fill, 320, 240, fallback: "black_logo.jpg", size: "320x240", class:"border" %>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title font-weight-bold"><%= post.title %></h4>
+          <p class="card-text text-muted"><%= post.name %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

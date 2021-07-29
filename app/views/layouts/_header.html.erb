@@ -1,5 +1,5 @@
 <div class="bs-component">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4c1701;" >
     <div class="container">
       <%= link_to root_path, data: {"turbolinks" => false}, class: 'rogo' do %>
         <%= image_tag 'logo.png', size: "55x55" %>
@@ -11,10 +11,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mx-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-light' %>
+              <%= link_to '投稿する', new_post_path, class: 'btn btn-outline-warning text-light ' %>
             </li>
             <li class="nav-item">
               <%= link_to '投稿一覧', posts_path, class: 'nav-link text-light' %>
@@ -43,7 +43,7 @@
         <!--投稿検索-->
         <div class="form-inline my-2 my-lg-0">
           <%= form_with url: search_path, method: :get, local: true do |f| %>
-            <%= f.text_field :content, placeholder: "検索", class:"form-control mr-sm-2" %>
+            <%= f.text_field :content, placeholder: "投稿を検索", class:"form-control mr-sm-2" %>
             <%= hidden_field_tag :model, "post" %>
             <%= button_tag sanitize('<i class="fa fa-search"></i>'), :type => "submit", :class =>"btn btn-secondary my-2 my-sm-0" %>
           <% end %>

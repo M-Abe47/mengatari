@@ -1,13 +1,5 @@
 <div class="container">
-  <% if @user.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render "layouts/error_message", model: @user %>
   <div class="row mb-5">
 
     <div class="col-8 mx-auto">
