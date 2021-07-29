@@ -9,8 +9,6 @@ class PostCommentsController < ApplicationController
     redirect_to post_path(post)
   end
 
-  def destroy
-  end
 
   private
 
