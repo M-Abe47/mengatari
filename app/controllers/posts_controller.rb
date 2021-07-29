@@ -55,9 +55,6 @@ class PostsController < ApplicationController
   # end
 
   private
-  # def set_q
-  #   @q = Post.ransack(params[:q])
-  # end
 
   def post_params
     params.require(:post).permit(:title, :name, :image, :body, :evaluation, :category, :start_time)
