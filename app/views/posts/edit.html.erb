@@ -25,8 +25,8 @@
       <div class="col-md-3"><%= f.select :category, [["醤油", "醤油"], ["味噌", "味噌"], ["豚骨", "豚骨"], ["魚介", "魚介"], ["塩", "塩"], ["家系", "家系"], ["二郎系", "二郎系"], ["その他", "その他"]], class: 'form-control' %></div>
     </div>
     <div class="row mt-2 light-text">
-      <label class="col-md-2 mr-2 text">ラーメン詳細<br><br><br><br></label>
-      <%= f.text_area :body, class:"col-md-3 form-control" %>
+      <label class="col-md-2 mr-2 text">ラーメン詳細</label>
+      <%= f.text_area :body, rows:'5', class:"col-md-3 form-control" %>
     </div>
     <div class="row mt-2">
       <div class="col-md-2">評価</div>

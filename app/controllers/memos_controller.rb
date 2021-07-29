@@ -2,9 +2,6 @@ class MemosController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    # @memo = Memo.new
-    # @user = current_user
-    # @memos = Memo.where(user_id: current_user).order(start_time: "desc").page(params[:page]).per(8)
     @posts = Post.where(user_id: current_user.id)
   end
 
