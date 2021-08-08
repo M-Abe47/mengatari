@@ -50,6 +50,9 @@ class PostsController < ApplicationController
     end
   end
 
+  # def search
+  #   @posts = @q.result
+  # end
 
   private
 
