@@ -51,8 +51,8 @@
               <div class="card-body" id="post_<%= post.id %>">
                 <h3 class="card-title d-inline"><%= post.title %></h3>
                 <%= post.name %>
-                <%= link_to search_path(content: post.category) do %>
-                  <div class="badge badge-warning"><%= post.category %></div>
+                <%= link_to search_path(content: post.category),class:"badge badge-warning" do %>
+                  <%= post.category %>
                 <% end %>
                 <!--評価-->
                 <div class="post-evaluation mt-1" data-score="<%= post.evaluation %>"></div>

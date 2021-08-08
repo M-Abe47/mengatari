@@ -1,15 +1,13 @@
 <div class="container">
   <p id="notice"><%= flash[:notice] %></p>
 	<h2>ラーメンの記録</h2>
-	
+
  	<div class="col-md-12 col-sm-12 col-xs-12 border shadow-lg">
  	  <%# binding.irb %>
 		<%= month_calendar events: @posts do |date, memos| %>
 		  <%= date.day %>
 		  <% memos.each do |memo| %>
-		    <div class="badge bg-danger">
-		      <%= link_to memo.title, post_path(memo),class:"text-light" %>
-		    </div>
+		  	<%= link_to memo.title, post_path(memo), class:"text-light badge bg-danger" %>
 		  <% end %>
 		<% end %>
  	</div>
